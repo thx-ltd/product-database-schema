@@ -1,0 +1,199 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "adapter": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "endpoints": {
+          "items": {
+            "$ref": "#/definitions/endpoint"
+          },
+          "type": "array"
+        },
+        "hardwareId": {
+          "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/standard-usb-identifiers#multiple-interface-usb-devices",
+          "type": "string"
+        },
+        "svcArgs": {
+          "type": "string"
+        },
+        "friendlyName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "endpoints",
+        "hardwareId",
+        "svcArgs"
+      ],
+      "type": "object"
+    },
+    "endpoint": {
+      "properties": {
+        "endpointId": {
+          "$comment": "A THX development created and assigned GUID",
+          "type": "string"
+        },
+        "deviceInterfaceClass": {
+          "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/installing-device-interfaces-for-an-audio-adapter. Only KSCATEGORY_RENDER and KSCATEGORY_CAPTURE supported",
+          "type": "string",
+          "enum": ["KSCATEGORY_RENDER", "KSCATEGORY_CAPTURE"]
+        },
+        "formFactorOverride": {
+          "$comment": "https://learn.microsoft.com/en-us/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-endpointformfactor",
+          "type": "number"
+        },
+        "ksFilterFactory": {
+          "$comment": "Usually obtained from ksstudio. See https://thxltd.atlassian.net/l/cp/b2mCCAB0",
+          "type": "string"
+        },
+        "ksNodeType": {
+          "$comment": "Category property (usually) of the topology filter factory (usually a “mixer” filter factory) obtained via ksstudio.. See https://thxltd.atlassian.net/l/cp/b2mCCAB0 and https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pin-category-property",
+          "type": "string"
+        },
+        "scuArgs": {
+          "type": "string"
+        },
+        "scuManufacturer": {
+          "type": "string"
+        },
+        "scuModel": {
+          "type": "string"
+        },
+        "compositeFxStreamEffectClsid": {
+          "type": "string"
+        },
+        "compositeFxModeEffectClsid": {
+          "type": "string"
+        },
+        "compositeFxOffloadStreamEffectClsid": {
+          "type": "string"
+        },
+        "compositeFxOffloadModeEffectClsid": {
+          "type": "string"
+        },
+        "compositeFxEndpointEffectClsid": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "required": [
+            "endpointId",
+            "formFactorOverride",
+            "ksFilterFactory",
+            "ksNodeType"
+          ]
+        },
+          {
+          "anyOf": [
+            { "required": ["compositeFxStreamEffectClsid"] },
+            { "required": ["compositeFxModeEffectClsid"] },
+            { "required": ["compositeFxOffloadStreamEffectClsid"] },
+            { "required": ["compositeFxOffloadModeEffectClsid"] },
+            { "required": ["compositeFxEndpointEffectClsid"] }
+          ]
+        }
+      ],
+      "type": "object"
+    },
+    "inf": {
+      "properties": {
+        "adapters": {
+          "items": {
+            "$ref": "#/definitions/adapter"
+          },
+          "type": "array"
+        },
+        "templatePath": {
+          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
+          "type": "string"
+        },
+        "infPath": {
+          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
+          "type": "string"
+        },
+        "setupClass": {
+          "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors",
+          "type": "string"
+        },
+        "setupClassGuid": {
+          "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors",
+          "type": "string"
+        }
+      },
+      "required": [
+        "adapters",
+        "templatePath",
+        "infPath",
+        "setupClass",
+        "setupClassGuid"
+      ],
+      "type": "object"
+    },
+    "installer": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "infs": {
+          "items": {
+            "$ref": "#/definitions/inf"
+          },
+          "type": "array"
+        },
+        "upgradeCode": {
+          "$comment": "A THX packaging created and assigned GUID used by generated Windows installers",
+          "type": "string"
+        },
+        "upgradeCodeBundle": {
+          "$comment": "A THX packaging created and assigned GUID used by generated Windows installers",
+          "type": "string"
+        },
+        "windowTitle": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "description",
+        "infs",
+        "upgradeCode",
+        "upgradeCodeBundle",
+        "windowTitle"
+      ],
+      "type": "object"
+    },
+    "product": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "installers": {
+          "items": {
+            "$ref": "#/definitions/installer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "description",
+        "installers"
+      ],
+      "type": "object"
+    }
+  },
+  "properties": {
+    "products": {
+      "items": {
+        "$ref": "#/definitions/product"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "products"
+  ]
+}
