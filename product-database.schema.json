@@ -62,41 +62,13 @@
         },
         "scuModel": {
           "type": "string"
-        },
-        "compositeFxStreamEffectClsid": {
-          "type": "string"
-        },
-        "compositeFxModeEffectClsid": {
-          "type": "string"
-        },
-        "compositeFxOffloadStreamEffectClsid": {
-          "type": "string"
-        },
-        "compositeFxOffloadModeEffectClsid": {
-          "type": "string"
-        },
-        "compositeFxEndpointEffectClsid": {
-          "type": "string"
         }
       },
-      "allOf": [
-        {
-          "required": [
-            "endpointId",
-            "formFactorOverride",
-            "ksFilterFactory",
-            "ksNodeType"
-          ]
-        },
-          {
-          "anyOf": [
-            { "required": ["compositeFxStreamEffectClsid"] },
-            { "required": ["compositeFxModeEffectClsid"] },
-            { "required": ["compositeFxOffloadStreamEffectClsid"] },
-            { "required": ["compositeFxOffloadModeEffectClsid"] },
-            { "required": ["compositeFxEndpointEffectClsid"] }
-          ]
-        }
+      "required": [
+        "endpointId",
+        "formFactorOverride",
+        "ksFilterFactory",
+        "ksNodeType"
       ],
       "type": "object"
     },
