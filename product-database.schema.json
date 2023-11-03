@@ -64,11 +64,24 @@
           "type": "string"
         }
       },
-      "required": [
-        "endpointId",
-        "formFactorOverride",
-        "ksFilterFactory",
-        "ksNodeType"
+      "allOf": [
+        {
+          "required": [
+            "endpointId",
+            "formFactorOverride",
+            "ksFilterFactory",
+            "ksNodeType"
+          ]
+        },
+          {
+          "anyOf": [
+            { "required": ["compositeFxStreamEffectClsid"] },
+            { "required": ["compositeFxModeEffectClsid"] },
+            { "required": ["compositeFxOffloadStreamEffectClsid"] },
+            { "required": ["compositeFxOffloadModeEffectClsid"] },
+            { "required": ["compositeFxEndpointEffectClsid"] }
+          ]
+        }
       ],
       "type": "object"
     },
