@@ -54,6 +54,26 @@
           "$comment": "Category property (usually) of the topology filter factory (usually a “mixer” filter factory) obtained via ksstudio.. See https://thxltd.atlassian.net/l/cp/b2mCCAB0 and https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pin-category-property",
           "type": "string"
         },
+        "compositeFxStreamEffectClsid": {
+          "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-streameffectclsid",
+          "type": "string"
+        },
+        "compositeFxModeEffectClsid": {
+          "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-modeeffectclsid",
+          "type": "string"
+        },
+        "compositeFxOffloadStreamEffectClsid": {
+          "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-offload-streameffectclsid",
+          "type": "string"
+        },
+        "compositeFxOffloadModeEffectClsid": {
+          "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-offload-modeeffectclsid",
+          "type": "string"
+        },
+        "compositeFxEndpointEffectClsid": {
+          "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-endpointeffectclsid",
+          "type": "string"
+        },
         "scuArgs": {
           "type": "string"
         },
