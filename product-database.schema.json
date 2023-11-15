@@ -35,7 +35,8 @@
       "properties": {
         "endpointId": {
           "$comment": "A THX development created and assigned GUID",
-          "type": "string"
+          "type": "string",
+          "format": "uuid"
         },
         "deviceInterfaceClass": {
           "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/installing-device-interfaces-for-an-audio-adapter. Only KSCATEGORY_RENDER and KSCATEGORY_CAPTURE supported",
