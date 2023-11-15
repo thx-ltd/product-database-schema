@@ -53,7 +53,8 @@
         },
         "ksNodeType": {
           "$comment": "Category property (usually) of the topology filter factory (usually a “mixer” filter factory) obtained via ksstudio.. See https://thxltd.atlassian.net/l/cp/b2mCCAB0 and https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pin-category-property",
-          "type": "string"
+          "type": "string",
+          "enum": ["KSNODETYPE_SPEAKER", "KSNODETYPE_HEADPHONES", "KSNODETYPE_MICROPHONE"]
         },
         "compositeFxStreamEffectClsid": {
           "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-streameffectclsid",
