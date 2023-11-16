@@ -159,8 +159,6 @@
       "required": [
         "description",
         "infs",
-        "upgradeCode",
-        "upgradeCodeBundle",
         "windowTitle"
       ],
       "type": "object"
