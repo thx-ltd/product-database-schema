@@ -3,9 +3,6 @@
   "definitions": {
     "adapter": {
       "properties": {
-        "description": {
-          "type": "string"
-        },
         "endpoints": {
           "items": {
             "$ref": "#/definitions/endpoint"
@@ -17,6 +14,9 @@
           "type": "string"
         },
         "svcArgs": {
+          "type": "string"
+        },
+        "description": {
           "type": "string"
         },
         "friendlyName": {
@@ -43,10 +43,6 @@
           "type": "string",
           "enum": ["KSCATEGORY_RENDER", "KSCATEGORY_CAPTURE"]
         },
-        "formFactorOverride": {
-          "$comment": "https://learn.microsoft.com/en-us/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-endpointformfactor",
-          "type": "number"
-        },
         "ksFilterFactory": {
           "$comment": "Usually obtained from ksstudio. See https://thxltd.atlassian.net/l/cp/b2mCCAB0",
           "type": "string"
@@ -55,6 +51,10 @@
           "$comment": "Category property (usually) of the topology filter factory (usually a “mixer” filter factory) obtained via ksstudio.. See https://thxltd.atlassian.net/l/cp/b2mCCAB0 and https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pin-category-property",
           "type": "string",
           "enum": ["KSNODETYPE_SPEAKER", "KSNODETYPE_HEADPHONES", "KSNODETYPE_MICROPHONE"]
+        },
+        "formFactorOverride": {
+          "$comment": "https://learn.microsoft.com/en-us/windows/win32/api/mmdeviceapi/ne-mmdeviceapi-endpointformfactor",
+          "type": "number"
         },
         "compositeFxStreamEffectClsid": {
           "$comment": "See https://learn.microsoft.com/en-us/windows-hardware/drivers/audio/pkey-compositefx-streameffectclsid",
@@ -115,20 +115,20 @@
           },
           "type": "array"
         },
-        "templatePath": {
-          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
-          "type": "string"
-        },
-        "infPath": {
-          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
-          "type": "string"
-        },
         "setupClass": {
           "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors",
           "type": "string"
         },
         "setupClassGuid": {
           "$comment": "https://learn.microsoft.com/en-us/windows-hardware/drivers/install/system-defined-device-setup-classes-available-to-vendors",
+          "type": "string"
+        },
+        "templatePath": {
+          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
+          "type": "string"
+        },
+        "infPath": {
+          "$comment": "Uses <templatePath> to generate <infPath>. E.g. TextTransform $templatePath -Out $infPath",
           "type": "string"
         }
       },
@@ -151,14 +151,6 @@
             "$ref": "#/definitions/inf"
           },
           "type": "array"
-        },
-        "upgradeCode": {
-          "$comment": "A THX packaging created and assigned GUID used by generated Windows installers",
-          "type": "string"
-        },
-        "upgradeCodeBundle": {
-          "$comment": "A THX packaging created and assigned GUID used by generated Windows installers",
-          "type": "string"
         },
         "windowTitle": {
           "type": "string"
